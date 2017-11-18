@@ -67,7 +67,7 @@ Gets the hash of one of the 256 most recent complete blocks.
 
 **Returns**
 
-*nothing*
+`result` **i32** Returns 1 or 0 depending on the operation succeeded or not
 
 ## call
 
