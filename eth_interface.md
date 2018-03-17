@@ -390,9 +390,7 @@ account with non-empty associated code.
 
 ## return
 
-Set the returning output data for the execution.
-
-*Note*: multiple invocations will overwrite the previous data.
+Set the returning output data for the execution. This will cause a trap and the execution will be aborted immediately.
 
 **Parameters**
 
@@ -401,13 +399,11 @@ Set the returning output data for the execution.
 
 **Returns**
 
-*nothing*
+*doesn't return*
 
 ## revert
 
-Set the returning output data for the execution.
-
-*Note*: multiple invocations will overwrite the previous data.
+Set the returning output data for the execution. This will cause a trap and the execution will be aborted immediately.
 
 **Parameters**
 
@@ -416,7 +412,7 @@ Set the returning output data for the execution.
 
 **Returns**
 
-*nothing*
+*doesn't return*
 
 ## getReturnDataSize
 
@@ -453,11 +449,7 @@ from last executed `call`, `callCode`, `callDelegate`, `callStatic` or `create`.
 ## selfDestruct
 
 Mark account for later deletion and give the remaining balance to the specified
-beneficiary address. This takes effect once the contract execution terminates.
-
-*Note*: multiple invocations will overwrite the benficiary address.
-
-*Note*: the contract **shall** halt execution after this call.
+beneficiary address. This will cause a trap and the execution will be aborted immediately.
 
 **Parameters**
 
@@ -465,7 +457,7 @@ beneficiary address. This takes effect once the contract execution terminates.
 
 **Returns**
 
-*nothing*
+*doesn't return*
 
 ## getBlockTimestamp
 
