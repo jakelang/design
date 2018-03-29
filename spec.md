@@ -1,6 +1,8 @@
-# ewasm specification
+ewasm specification
+===================
 
-## Introduction
+Introduction
+------------
 
 This document aims to specify an ewasm VM in a way useful to contract writers and VM implementers.
 To this end, multiple things are specified:
@@ -8,7 +10,8 @@ To this end, multiple things are specified:
 -   The extra state that a VM needs to have around to successfully respond to calls into the EEI.
 -   The EEI (Ethereum Environment Interface), currently specified loosley [here](eth_interface.md).
 
-## Notation
+Notation
+--------
 
 ### BuiltIn Sorts
 
@@ -77,11 +80,24 @@ For example, if `m` is the following `Map{Int256,String}`: `3 |-> "hello"   5 |-
 -   `m[5 <- "hello again"]` is `3 |-> "hello"   5 |-> "hello again"`, and
 -   `m[6 <- "hello again"]` is `3 |-> "hello"   5 |-> "hello"   6 |-> "hello again"`.
 
-## Execution State
+Execution State
+---------------
 
-## Initialisation of a contract
 
-## Execution of the contract entry point
 
-## Host functions available to the contract
+
+Initialisation of a contract
+----------------------------
+
+**TODO**
+
+Execution of the contract entry point
+-------------------------------------
+
+**TODO**
+
+Host functions available to the contract
+----------------------------------------
+
+**TODO**
 
