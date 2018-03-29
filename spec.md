@@ -83,8 +83,60 @@ For example, if `m` is the following `Map{Int256,String}`: `3 |-> "hello"   5 |-
 Execution State
 ---------------
 
+### Overall
 
+The ewasm VM contains state relevant to the EEI functions, as well as a wasm engine.
 
+**TODO**: `WasmVM` is not defined, but refers in general to the "wasm VM specified by the wasm spec".
+          Perhaps this corresponds roughly to the `Store` component of the wasm spec?
+          It's not clear, but in fleshing out the document it will become clearer.
+
+```
+    EwasmVM ::= { eei    : EEI
+                , engine : WasmVM
+                }
+```
+
+### The EEI
+
+The EEI contains fields relevant to VMs used for executing contracts on the Ethereum blockchain.
+
+```
+    EEI ::= { statusCode : StatusCode
+            , accounts   : Accounts
+            }
+```
+
+The `StatusCode` is defined by the [EVM-C API Standard](https://github.com/ethereum/evmc).
+See the repository for an explanation of each status code.
+
+```
+    StatusCode ::= "EVM_SUCCESS"
+                 | "EVM_FAILURE"
+                 | "EVM_INVALID_INSTRUCTION"
+                 | "EVM_UNDEFINED_INSTRUCTION"
+                 | "EVM_OUT_OF_GAS"
+                 | "EVM_BAD_JUMP_DESTINATION"
+                 | "EVM_STACK_OVERFLOW"
+                 | "EVM_STACK_UNDERFLOW"
+                 | "EVM_INVALID_MEMORY_ACCESS"
+                 | "EVM_REVERT"
+                 | "EVM_STATIC_MODE_ERROR"
+                 | "EVM_REJECTED"
+                 | "EVM_INTERNAL_ERROR"
+```
+
+Accounts store the four relevant fields for accounts on the Ethereum network.
+
+```
+    AccountId ::= Int160
+    Accounts  ::= Map{AccountId, Account}
+    Account   ::= { balance : Int256
+                  , code    : ByteString
+                  , storage : Map{Int256, Int256}
+                  , nonce   : Int256
+                  }
+```
 
 Initialisation of a contract
 ----------------------------
