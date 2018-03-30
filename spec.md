@@ -21,6 +21,7 @@ The following sorts are assumed to exist *a priori*:
 -   `IntN` for any `N`: Fixed-with integers.
 -   `String`: Text strings.
 -   `ByteString`: Sequences of `Int8`.
+-   `Instruction`: Defined by the [wasm spec](https://github.com/webassembly/spec).
 
 ### Productions
 
@@ -130,14 +131,26 @@ Execution State
 
 The ewasm VM contains state relevant to the EEI functions, as well as a wasm engine.
 
-**TODO**: `WasmVM` is not defined, but refers in general to the "wasm VM specified by the wasm spec".
-          Perhaps this corresponds roughly to the `Store` component of the wasm spec?
-          It's not clear, but in fleshing out the document it will become clearer.
-
 ```
     EwasmVM ::= { eei    : EEI
                 , engine : WasmVM
                 }
+```
+
+### The wasm VM
+
+The wasm VM is defined in the [wasm spec](https://github.com/webassembly/spec).
+Here we define the fields we need from it.
+
+```
+    WasmVM ::= { stack : InstructionStack }
+```
+
+An `InstructionStack` consists of a space-separate list of `Instruction`.
+
+```
+    InstructionStack ::= ".Stack"
+                       | InstructionStack Instruction
 ```
 
 ### The EEI
