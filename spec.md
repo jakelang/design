@@ -105,9 +105,14 @@ The ewasm VM contains state relevant to the EEI functions, as well as a wasm eng
 
 The EEI contains fields relevant to VMs used for executing contracts on the Ethereum blockchain.
 
+**TODO**: In the definition of `EEI.useGas`, the field `gas` is treated like an `i64.const`, but here it's an `Int256`.
+          How do we reconcile these?
+          In EVM, it's an `Int256` in general.
+
 ```
     EEI ::= { statusCode : StatusCode
             , accounts   : Accounts
+            , gas        : Int256
             }
 ```
 
