@@ -176,3 +176,13 @@ The function signatures are provided here in wast format:
         (func (export "EEI.returnDataCopy") (param i32 i32 i32)         (result))
     )
 ```
+
+### `(call EEI.useGas (i64.const g))`
+
+Function to deduct the correct amount of gas for execution of an ewasm contract.
+
+1.  Load the value `i64.const G` from `EEI.gas`.
+2.  If `g <= G`, then:
+    i.  Set `EEI.gasAvailable` to `G - g`.
+3.  Else:
+    ii. Set `EEI.statusCode` to `EVM_OUT_OF_GAS` and Trap.
