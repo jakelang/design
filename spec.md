@@ -34,12 +34,15 @@ Multiple productions for a sort can be declared together using the alternation s
           | "-" Exp
 ```
 
-Sort-parametric productions allow for specifying data-structures.
+Sort-parametric productions allow for specifying data-structures (using curly-braces following the sort names).
 For example, the following declares sort-parametric tuples, for any sorts `S1` and `S2`.
 
 ```
     Tuple{S1, S2} ::= "(" S1 "," S2 ")"
 ```
+
+When referring to an operator/production, we'll use a name which replaces the non-terminal positions with underbars (`_`).
+For example, the above production `Exp ::= Exp "+" Exp` would be referred to as the operator `_+_`.
 
 ### Records
 
@@ -60,7 +63,8 @@ A record can be copied with a field updated using the `with` keyword, eg. `p wit
 
 ### Maps
 
-Map productions are key-value stores used throughout the specification, where the key and value sorts are specified when declaring the production.
+Maps are key-value stores used throughout the specification, where the key and value sorts are specified when declaring the production.
+Their syntax is given in terms of parametric productions described above.
 The syntax of maps is given here:
 
 ```
@@ -69,7 +73,7 @@ The syntax of maps is given here:
                  | Map{S1, S2} Map{S1, S2}          // map union
                  | Map{S1, S2} "[" S1 "<-" S2 "]"   // map update
 
-    S1{S1,S2} ::= Map{S1,S2} "[" S1 "]"             // map access
+    S1 ::= Map{S1,S2} "[" S1 "]"                    // map access
 ```
 
 Map values can be accessed with the `_[_]` operator, and set with the `_[_<-_]` operator.
