@@ -237,8 +237,8 @@ Function to deduct the correct amount of gas for execution of an ewasm contract.
 
 2.  If `g <= G`, then:
 
-    i.  Set `EEI.gasAvailable` to `G - g`.
-    
+    i.  Set `EEI.gas` to `G - g`.
+
 3.  Else:
 
     ii. Set `EEI.statusCode` to `EVM_OUT_OF_GAS` and Trap.
