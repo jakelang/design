@@ -84,6 +84,36 @@ For example, if `m` is the following `Map{Int256,String}`: `3 |-> "hello"   5 |-
 -   `m[5 <- "hello again"]` is `3 |-> "hello"   5 |-> "hello again"`, and
 -   `m[6 <- "hello again"]` is `3 |-> "hello"   5 |-> "hello"   6 |-> "hello again"`.
 
+### Transitions
+
+State transitions are defined using a similar style to the wasm specification.
+The small-step relation `_=>_` is used, and the execution state is pattern-matched over.
+Uninteresting details of the execution state are abstracted with ellipsis (`...`).
+
+For example, the following defines a simple language for adjusting a `Person`'s age:
+
+```
+    PersonCommand ::= "setAge" Int
+                    | "birthday"
+                    | "switchSides"
+
+    Person ::= Person "<<" PersonCommand
+
+    { ... age : N ... } << setTo N' => { ... age : N'    ... }
+    { ... age : N ... } << birthday => { ... age : N + 1 ... }
+
+    { ... side : Empire     ... } << switchSides => { ... side : Resistance ... }
+    { ... side : Resistance ... } << switchSides => { ... side : Empire     ... }
+```
+
+In this way, the following reductions could be a mid-life crisis:
+
+```
+    { name : "Bob" , age : 35 , side : Empire     } << birthday << switchSides
+    { name : "Bob" , age : 36 , side : Empire     } << switchSides
+    { name : "Bob" , age : 36 , side : Resistance }
+```
+
 Execution State
 ---------------
 
