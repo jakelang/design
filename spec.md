@@ -114,6 +114,15 @@ In this way, the following reductions could be a mid-life crisis:
     { name : "Bob" , age : 36 , side : Resistance }
 ```
 
+Extra requirements can be added as sideconditions using the conditional transition `_=>_if_`:
+
+```
+    PersonCommand ::= "switchSidesIfOlder" Int
+
+    { ... age : N ... } << switchSidesIfOlder N' => { ... age : N ... } << switchSides if N >= N'
+    { ... age : N ... } << switchSidesIfOlder N' => { ... age : N ... }                if N <  N'
+```
+
 Execution State
 ---------------
 
