@@ -155,5 +155,19 @@ Execution of the contract entry point
 Host functions available to the contract
 ----------------------------------------
 
-**TODO**
+The EEI specifies several host functions available to the user.
+Conceptually, it is defined as a wasm module which is available while executing ewasm contracts.
+The definition of the functions is *opaque*, meaning they are provided in terms of their update to the state and not in terms of wasm code.
+In the future, they may become more transparent as suitable wasm code is found to represent them.
 
+### EEI Module
+
+The function signatures are provided here in wast format:
+
+```wast
+    (module
+        (func (export "EEI.useGas")         (param i64)                 (result))
+        (func (export "EEI.call")           (param i64 i32 i32 i32 i32) (result i32))
+        (func (export "EEI.returnDataCopy") (param i32 i32 i32)         (result))
+    )
+```
