@@ -238,3 +238,28 @@ Function to deduct the correct amount of gas for execution of an ewasm contract.
     i.  Set `EEI.gasAvailable` to `G - g`.
 3.  Else:
     ii. Set `EEI.statusCode` to `EVM_OUT_OF_GAS` and Trap.
+
+```
+    { engine : { ... stack : STACK (call EEI.useGas (i64.const g)) ... }
+    , EEI    : { ... gas : G ... }
+    }
+ => { engine : { ... stack : STACK ... }
+    , EEI    : { ... gas : G - g ... }
+ if g <= G
+
+    { engine : { ... stack : STACK (call EEI.useGas (i64.const g)) ... }
+    , EEI    : { ...
+               , gas        : G
+               , statusCode : SC
+               , ...
+               }
+    }
+ => { engine : { ... stack : STACK (trap) ... }
+    , EEI    : { ...
+               , gas        : G
+               , statusCode : EVM_OUT_OF_GAS
+               , ...
+               }
+    }
+ if g > G
+```
