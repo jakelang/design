@@ -21,7 +21,7 @@ The following sorts are assumed to exist *a priori*:
 -   `IntN` for any `N`: Fixed-with integers.
 -   `String`: Text strings.
 -   `ByteString`: Sequences of `Int8`.
--   `Instruction`: Defined by the [wasm spec](https://github.com/webassembly/spec).
+-   `Instruction`: Defined by the [wasm spec].
 
 ### Productions
 
@@ -217,6 +217,9 @@ Conceptually, it is defined as a wasm module which is available while executing 
 The definition of the functions is *opaque*, meaning they are provided in terms of their update to the state and not in terms of wasm code.
 In the future, they may become more transparent as suitable wasm code is found to represent them.
 
+For each function exported, both a prose language and formal language specification is provided.
+The prose language mimics the style of the [wasm spec], and the formal language mimics the [KWASM spec].
+
 ### EEI Module
 
 The function signatures are provided here in wast format:
@@ -267,3 +270,9 @@ Function to deduct the correct amount of gas for execution of an ewasm contract.
     }
  if gas_cost > gas_available
 ```
+
+Resources
+=========
+
+[wasm spec]: <https://github.com/webassembly/spec>
+[KWASM spec]: <https://github.com/kframework/webassembly>
