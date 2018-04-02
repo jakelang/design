@@ -229,41 +229,41 @@ The function signatures are provided here in wast format:
     )
 ```
 
-### `(call EEI.useGas (i64.const g))`
+### `(call EEI.useGas (i64.const gas_cost))`
 
 Function to deduct the correct amount of gas for execution of an ewasm contract.
 
-1.  Load the value `i64.const G` from `EEI.gas`.
+1.  Load the value `i64.const gas_available` from `EEI.gas`.
 
-2.  If `g <= G`, then:
+2.  If `gas_cost <= gas_available`, then:
 
-    i.  Set `EEI.gas` to `G - g`.
+    i.  Set `EEI.gas` to `gas_available - gas_cost`.
 
 3.  Else:
 
     ii. Set `EEI.statusCode` to `EVM_OUT_OF_GAS` and Trap.
 
 ```
-    { engine : { ... stack : STACK (call EEI.useGas (i64.const g)) ... }
-    , EEI    : { ... gas : G ... }
+    { engine : { ... stack : STACK (call EEI.useGas (i64.const gas_cost)) ... }
+    , EEI    : { ... gas : gas_available ... }
     }
  => { engine : { ... stack : STACK ... }
-    , EEI    : { ... gas : G - g ... }
- if g <= G
+    , EEI    : { ... gas : gas_available - gas_cost ... }
+ if gas_cost <= gas_available
 
-    { engine : { ... stack : STACK (call EEI.useGas (i64.const g)) ... }
+    { engine : { ... stack : STACK (call EEI.useGas (i64.const gas_cost)) ... }
     , EEI    : { ...
-               , gas        : G
-               , statusCode : SC
+               , gas        : gas_available
+               , statusCode : _
                , ...
                }
     }
  => { engine : { ... stack : STACK (trap) ... }
     , EEI    : { ...
-               , gas        : G
+               , gas        : gas_available
                , statusCode : EVM_OUT_OF_GAS
                , ...
                }
     }
- if g > G
+ if gas_cost > gas_available
 ```
