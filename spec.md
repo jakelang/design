@@ -223,13 +223,13 @@ The function signatures are provided here in wast format:
 
 ```wast
     (module
-        (func (export "EEI.useGas")         (param i64)                 (result))
-        (func (export "EEI.call")           (param i64 i32 i32 i32 i32) (result i32))
-        (func (export "EEI.returnDataCopy") (param i32 i32 i32)         (result))
+        (func (export "EEI$useGas")         (param i64)                 (result))
+        (func (export "EEI$call")           (param i64 i32 i32 i32 i32) (result i32))
+        (func (export "EEI$returnDataCopy") (param i32 i32 i32)         (result))
     )
 ```
 
-### `(call EEI.useGas (i64.const gas_cost))`
+### `(call EEI$useGas (i64.const gas_cost))`
 
 Function to deduct the correct amount of gas for execution of an ewasm contract.
 
@@ -244,14 +244,14 @@ Function to deduct the correct amount of gas for execution of an ewasm contract.
     ii. Set `EEI.statusCode` to `EVM_OUT_OF_GAS` and Trap.
 
 ```
-    { engine : { ... stack : STACK (call EEI.useGas (i64.const gas_cost)) ... }
+    { engine : { ... stack : STACK (call EEI$useGas (i64.const gas_cost)) ... }
     , EEI    : { ... gas : gas_available ... }
     }
  => { engine : { ... stack : STACK ... }
     , EEI    : { ... gas : gas_available - gas_cost ... }
  if gas_cost <= gas_available
 
-    { engine : { ... stack : STACK (call EEI.useGas (i64.const gas_cost)) ... }
+    { engine : { ... stack : STACK (call EEI$useGas (i64.const gas_cost)) ... }
     , EEI    : { ...
                , gas        : gas_available
                , statusCode : _
