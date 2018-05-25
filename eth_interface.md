@@ -275,7 +275,7 @@ Get the block’s difficulty.
 
 **Parameters**
 
--   `offset` **i32ptr** the memory offset to load the difficulty into (`u256`)
+-   `resultOffset` **i32ptr** the memory offset to load the difficulty into (`u256`)
 
 **Returns**
 
