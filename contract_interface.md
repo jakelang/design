@@ -1,6 +1,6 @@
-# eWASM Contract Interface (ECI) Specification (*Revision 3*)
+# Ewasm Contract Interface (ECI) Specification (*Revision 3*)
 
-The eWASM Contract Interface (ECI) specifies the structure of a contract module.
+The Ewasm Contract Interface (ECI) specifies the structure of a contract module.
 
 ### Wire format
 
