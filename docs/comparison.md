@@ -1,3 +1,5 @@
+# Comparison with Other Architectures
+
 # WASM
 ### Good
 * limited well defined non-determinism

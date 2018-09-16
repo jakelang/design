@@ -1,4 +1,4 @@
-# Determining ewasm gas costs
+# Gas Costs
 
 The goal of this document is to describe the process of determining gas costs
 for ewasm instructions.

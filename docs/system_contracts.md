@@ -1,4 +1,4 @@
-# System Contracts (Revision 0)
+# System Contracts
 
 System contracts are interfaces defined as contracts, which are essential or
 recommended for an ewasm VM.

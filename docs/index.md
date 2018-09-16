@@ -1,4 +1,4 @@
-# Ethereum WebAssembly (ewasm)
+# Home
 
 Ethereum WebAssembly is a proposed redesign of the Ethereum smart contract execution layer using a deterministic subset of WebAssembly.
 
